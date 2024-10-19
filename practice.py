@@ -30,10 +30,10 @@ enemy = []
 enemy_xmovement = []
 enemy_ymovement = []
 enemy_directions = []  # List to store enemy movement directions
-number_of_enemies = 6
+number_of_enemies = 4
 
 for i in range(number_of_enemies):
-    enemy_xmovement.append(2)
+    enemy_xmovement.append(random.randint(1,3))
     enemy_ymovement.append(40)
     enemy_x.append(random.randint(0, 1000))
     enemy_y.append(random.randint(0, 400))
@@ -118,7 +118,7 @@ while run:
             score += 1
             print(score)
             enemy_x[i] = random.randint(0, 1000)
-            enemy_y[i] = random.randint(0, 400)  # Ensure enemies are within the screen height
+            enemy_y[i] = random.randint(0, 00)  # Ensure enemies are within the screen height
 
         # Draw the enemy on the screen
         enemies(i)
