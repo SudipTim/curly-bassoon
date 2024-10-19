@@ -1,5 +1,6 @@
 import pygame
 import random
+import math
 pygame.init()
 
 screen_Width=1366
@@ -21,7 +22,7 @@ pygame.display.set_icon(img)
 
 
 player=pygame.image.load("rocket.png")
-enemy=pygame.image.load("alien.png")
+enemy=pygame.image.load("enemy.png")
 bg=pygame.image.load("spacebg2.jpg")
 bullet=pygame.image.load("bullett.png")
 
@@ -32,6 +33,8 @@ enemy_ymovement = 40
 
 moving_left= True
 bullet_fired=False
+
+score=0
 
 def players():
         screen.blit(player,(player_x,player_y))
@@ -53,6 +56,14 @@ def bullet_reset():
     global bullet_x, bullet_y
     bullet_x = player_x+15
     bullet_y = player_y+20
+
+
+def bullet_collision(enemy_x, enemy_y, bullet_x, bullet_y):
+    distance= math.sqrt(math.pow(enemy_x-bullet_x,2)+(math.pow(enemy_y-bullet_y,2)))
+    if distance < 27:
+        return True
+    else:
+        return False   
 
 run=True
 while run:
@@ -93,7 +104,12 @@ while run:
         bullet_reset()
         bullet_fired = True
         
-
+    collision= bullet_collision(enemy_x, enemy_y, bullet_x, bullet_y)
+    if collision:
+        score+=1
+        print(score)
+        enemy_x=random.randint(0,1300)
+        enemy_y=random.randint(0,600)
     
     enemies()       
     players()
